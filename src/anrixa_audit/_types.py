@@ -1,7 +1,16 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from enum import StrEnum
+from enum import Enum
+
+try:
+    from enum import StrEnum
+except ImportError:  # Python 3.10 compatibility
+    class StrEnum(str, Enum):
+        """Backport-compatible subset of enum.StrEnum used by anrixa-audit."""
+
+        def __str__(self) -> str:
+            return str(self.value)
 from typing import Any, Mapping
 
 
