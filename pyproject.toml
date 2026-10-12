@@ -1,0 +1,71 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "anrixa-audit"
+version = "0.1.0"
+description = "Deterministic audit gates, SHA-256 evidence, and file manifests for controlled Python workflows."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+authors = [
+  { name = "Anrixa" }
+]
+keywords = [
+  "audit",
+  "evidence",
+  "integrity",
+  "manifest",
+  "sha256",
+  "validation",
+  "reproducibility",
+  "data-pipeline",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Topic :: Software Development :: Quality Assurance",
+  "Topic :: System :: Archiving",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+  "build>=1.2.2",
+  "pytest>=8.3",
+  "twine>=6.1",
+]
+
+[project.scripts]
+anrixa-audit = "anrixa_audit.cli:main"
+
+[project.urls]
+Homepage = "https://anrixa.com/"
+Documentation = "https://github.com/Anrixa/anrixa-audit#readme"
+Repository = "https://github.com/Anrixa/anrixa-audit"
+Issues = "https://github.com/Anrixa/anrixa-audit/issues"
+Changelog = "https://github.com/Anrixa/anrixa-audit/blob/main/CHANGELOG.md"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.package-data]
+anrixa_audit = ["py.typed"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["anrixa_audit*"]
+
+[tool.pytest.ini_options]
+addopts = "-q --strict-markers --strict-config"
+testpaths = ["tests"]
